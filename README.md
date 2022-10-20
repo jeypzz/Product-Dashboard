@@ -1,4 +1,4 @@
-# Product Dashboard with CleMVC
+# Product Dashboard with JeypsMVC
 
 
-A product dashboard with CRUD functionalities made with CleMVC (My custom express framework) and MySQL as the database. 
+A product dashboard with CRUD functionalities made with JeypsMVC (My custom express framework) and MySQL as the database. 
