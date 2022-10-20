@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>New Product - Admin</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li><a href="/dashboard/admin">Dashboard</a></li>
+                    <li><a href="/users/edit">Profile</a></li>
+                    <li class="users"><a href="/logoff">Log off</a></li>
+                </ul>
+            </header> 
+           <section class="form">
+                <h1>Add a New Product</h1>
+                <a class="primary" href="/dashboard/admin">Return to Dashboard</a>
+                <form action="/products/add" method="post">
+<%_             if(error_msg != null) { _%> 
+                    <div class="errors"><%- error_msg _%></div>
+<%_             } _%> 
+<%_             if(success_msg != null) { _%> 
+                    <div class="success"><%- success_msg _%></div>
+<%_             } _%> 
+                    <input type="hidden" name="_csrf" value="<%= csrf_token _%>">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description">
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" id="price">
+                    <label for="quantity">Inventory Count:</label>
+                    <input type="number" name="quantity" id="quantity" min="1" value="1">
+                    <input type="submit" value="Create">
+                </form>
+            </section>
+        </div>
+    </body>
+</html>

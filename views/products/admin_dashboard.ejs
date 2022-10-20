@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>Product Dashboard - Admin</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li><a href="/dashboard/admin">Dashboard</a></li>
+                    <li><a href="/users/edit">Profile</a></li>
+                    <li class="users"><a href="/logoff">Log off</a></li>
+                </ul>
+            </header> 
+            <section class="tables">
+                <h1>Manage Products</h1>
+                <a class="primary" href="/products/new">Add New</a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Inventory Count</th>
+                            <th>Quantity Sold</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<%_                 for(let product of products){ _%> 
+                        <tr>
+                            <td><%=  product.id _%></td>
+                            <td><a href="/products/show/<%=  product.id _%>"><%=  product.name _%></a></td>
+                            <td><%=  product.quantity _%></td>
+                            <td><%=  product.product_sold _%></td>
+                            <td><a href="/products/edit/<%=  product.id _%>">Edit</a><a onclick="confirm('Are you sure you want to delete <%=  product.name _%>?');" href="/products/delete/<%=  product.id _%>">Remove</a></td>
+                        </tr>
+<%_                 } _%> 
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </body>
+</html>

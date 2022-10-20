@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>Edit Product - Admin</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li><a href="/dashboard/admin">Dashboard</a></li>
+                    <li><a href="/users/edit">Profile</a></li>
+                    <li class="users"><a href="/logoff">Log off</a></li>
+                </ul>
+            </header>        
+            <section class="form">
+                <h1>Edit Product #<%= product.id _%></h1>
+                <a class="primary" href="/dashboard/admin">Return to Dashboard</a>
+                <form action="/products/modify" method="post">
+<%_             if(error_msg != null) { _%> 
+                    <div class="errors"><%- error_msg _%></div>
+<%_             }
+                if(success_msg != null) { _%> 
+                    <div class="success"><%- success_msg _%></div>
+<%_             } _%> 
+                    <input type="hidden" name="_csrf" value="<%= csrf_token _%>">
+                    <input type="hidden" name="id" value="<%= product.id _%>" />
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" value="<%= product.name _%>">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description" value="<%= product.description _%>">
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" id="price" value="<%= product.price _%>">
+                    <label for="quantity">Inventory Count:</label>
+                    <input type="number" name="quantity" id="quantity" min="1" value="<%= product.quantity _%>">
+                    <input type="submit" value="Save">
+                </form>
+            </section>
+        </div>
+    </body>
+</html>

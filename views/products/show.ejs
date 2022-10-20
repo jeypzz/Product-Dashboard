@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>Product Information</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/users/edit">Profile</a></li>
+                    <li class="users"><a href="/logoff">Log off</a></li>
+                </ul>
+            </header>
+            <section class="wall">
+                <h1><%= product.name _%></h1>
+                <p>Added Since: <%= product.created_at _%></p>
+                <p>Product ID: <%= product.id _%></p>
+                <p>Description: <%= product.description _%></p>
+                <p>Total Sold: <%= product.product_sold _%></p>
+                <p>Number of available stocks: <%= product.quantity _%></p>
+                <form action="/reviews/add" method="post">
+<%_             if(error_msg != null) { _%> 
+                    <div class="errors"><%- error_msg _%></div>
+<%_             } _%>
+<%_             if(success_msg != null) { _%> 
+                    <div class="success"><%- success_msg _%></div>
+<%_             } _%> 
+                    <input type="hidden" name="_csrf" value="<%= csrf_token _%>" />
+                    <input type="hidden" name="product_id" value="<%= product.id _%>" />
+                    <h2>Leave a Review</h2>
+                    <textarea name="review_content"></textarea>
+                    <input type="submit" value="Post a Review"/>
+                </form>
+<%_             for(let review of reviews){ _%> 
+                <div class="review">
+                    <p><span><%= review.full_name _%></span> wrote: <span class="date"><%= review.created_at _%> </span></p>
+                    <p class="message"><%= review.content _%></p>   
+<%_                 for(let reply of review.replies){ _%> 
+                        <div class="reply">
+                            <p><span><%= reply.full_name _%></span> wrote: <span class="date"><%= reply.created_at _%></span></p>
+                            <p class="message"><%= reply.content _%></p>
+                        </div>
+<%_                 } _%>   
+                    <form class="reply" action="/replies/add" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrf_token _%>">
+                        <input type="hidden" name="review_id" value="<%= review.id _%>" />
+                        <input type="hidden" name="product_id" value="<%= product.id _%>" />
+                        <textarea name="reply_content" placeholder="Write a message"></textarea>
+                        <input type="submit" value="Post a Reply"/>
+                    </form>              
+                </div> 
+<%_             } _%> 
+            </section>
+        </div>
+    </body>
+</html>
+

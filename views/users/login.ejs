@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li class="users"><a href="/register">Register</a></li>
+                </ul>
+            </header>
+            <section class="form">
+                <h1>Login</h1>
+<%_             if(error_login != null) { _%> 
+                    <div class="errors"><%- error_login _%></div>
+<%_             } 
+                if(success_msg != null) { _%> 
+                    <div class="success"><%- success_msg _%></div>
+<%_             } _%> 
+                <form action="login/validate" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrf_token _%>">
+                    <label for="email">Email Address:</label>
+                    <input type="text" name="email" id="email">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                    <input type="submit" value="Login">
+                </form>
+                <a href="/register">Don't have an account? Register</a>
+            </section>
+        </div>
+    </body>
+</html>

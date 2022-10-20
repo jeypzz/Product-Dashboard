@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Product Dashboard">
+        <meta name="author" content="Clement Narciso">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css"/>
+        <title>Register</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <ul>
+                    <li><a href="/">V88 Merchandise</a></li>
+                    <li class="users"><a href="/login">Login</a></li>
+                </ul>
+            </header>
+            <section class="form">
+<%_             if(error_registration != null) { _%> 
+                    <div class="errors"><%- error_registration _%></div>
+<%_             } _%> 
+                <h1>Register</h1>
+                <form action="register/validate" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrf_token _%>">
+                    <label for="email">Email Address:</label>
+                    <input type="text" name="email" id="email"/>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" id="first_name"/>
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" id="last_name"/>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" value="password123"/>
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" id="confirm_password" value="password123"/>
+                    <input type="submit" value="Register">
+                </form>
+                <a href="/login">Already have an account? Login</a>
+            </section>
+        </div>
+    </body>
